@@ -36,12 +36,12 @@ def main():
     key= load_config(".")
     headers["X-Fake-Key"]= key["api_key"]
     data= fetch_data(url, params, headers)
-    if data is None:
+    if None in [data, key]:
+        print("something went wrong")
         return 
     save_json(data["args"], "result.json")
     save_csv([data["args"]], "result.csv")
     print("Saved")
-
 
 if __name__=="__main__":
     main()
