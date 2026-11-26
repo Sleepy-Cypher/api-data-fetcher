@@ -1,7 +1,9 @@
 import csv
 import requests
 import json 
+from pathlib import Path
 
+folder= Path(__file__).parent
 
 def load_config(path):
     try: 
@@ -33,7 +35,7 @@ def main():
     url= "https://httpbin.org/get"
     params={"topic": "fake-news", "page": 3}
     headers={}
-    key= load_config(".")
+    key= load_config(folder)
     if key is None:
         print("something went wrong")
         return 
