@@ -34,9 +34,12 @@ def main():
     params={"topic": "fake-news", "page": 3}
     headers={}
     key= load_config(".")
+    if key is None:
+        print("something went wrong")
+        return 
     headers["X-Fake-Key"]= key["api_key"]
     data= fetch_data(url, params, headers)
-    if None in [data, key]:
+    if data is None:
         print("something went wrong")
         return 
     save_json(data["args"], "result.json")
